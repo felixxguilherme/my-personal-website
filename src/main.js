@@ -20,18 +20,6 @@ function requireAllComponents (requireContext) {
 }
 requireAllComponents(require.context('./components', true, /[A-Za-z]\w+\.(vue)$/))
 
-
-// AUTOMATIC LOAD ALL DIRECTIVES.
-function requireAllDirectives (requireContext) {
-  var keys = requireContext.keys()
-  forEach(keys, k => {
-    var modulo = requireContext(k)
-    var nome = k.match(/([^/]*).(vue|js)$/)
-    Vue.directive(nome[1], modulo.default || modulo)
-  })
-}
-requireAllDirectives(require.context('./directives', true, /[A-Za-z]\w+\.(vue|js)$/))
-
 Vue.config.productionTip = false
 
 new Vue({
